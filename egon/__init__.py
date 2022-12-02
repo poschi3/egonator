@@ -10,11 +10,11 @@ VOLUME_3 = 220.0
 DISCOUNT_3 = 1
 
 
-def calc_basic_price(distance: float) -> float:
+def basic_price(distance: float) -> float:
     price = PRICE_PER_DISTANCE * distance
     return round(price, 2)
 
-def calc_discount(price: float) -> float:
+def discount(price: float) -> float:
     if price <= VOLUME_1:
         return price
     
@@ -27,3 +27,8 @@ def calc_discount(price: float) -> float:
         return new_price
 
     return VOLUME_3
+
+def price_for_days(days: float, distance: float, nbg: bool) -> float:
+    price = basic_price(distance * 2 * days)
+    price += (2.0 if nbg else 1.0) * days
+    return discount(price)

@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import vgn
 import egon
 
@@ -16,28 +17,28 @@ st.set_page_config(
 
 with st.sidebar:
     st.header("Eingaben")
+    days = st.slider('Betrachtungszeitraum', 2, 31, 10)
     st.subheader("Herkömmlich")
     tarifstufe = st.selectbox("Tarifstufe", options=vgn.TARIFSTUFEN.keys())
     nbg = st.checkbox("Nürnberg gestreift?", value=True)
-
     st.subheader("Egon")
-    distance = st.number_input("Einfache Distanz in km", value=5.0, step=0.1, min_value=0.1, max_value=200.0, format="%.1f")
-    days = st.slider('Anzahl Tage an denen gereist wird', 1, 31, 5)
+    distance = st.number_input("Einfache Distanz in km", value=10.0, step=0.1, min_value=0.1, max_value=200.0, format="%.1f")
 
 st.header("Kosten")
-st.subheader("Herkömmlich")
-vgn_single = vgn.TARIFSTUFEN[tarifstufe].single_online * 2 * days
-vgn_day = vgn.TARIFSTUFEN[tarifstufe].day * days
+st.warning("Status: Experimental", icon="⚠️")
 
-st.markdown("Einzelfahrkarten: " + str(vgn_single) + " €")
-st.markdown("Tageskarten: " + str(vgn_day) + " €")
+data = []
+for day in range(1, days + 1):
+    data.append([
+        vgn.single_online(day, tarifstufe),
+        vgn.day(day, tarifstufe),
+        egon.price_for_days(day, distance, nbg)
+    ])
 
-st.subheader("Egon")
-egon_price = egon.calc_basic_price(distance * 2 * days)
-if nbg:
-    egon_price += days * 2
-else:
-    egon_price += days
-egon_price = egon.calc_discount(egon_price)
+chart_data = pd.DataFrame(
+    data,
+    columns=['Einzelfahrkarte', 'Tagesticket', 'Egon']
+)
 
-st.markdown(str(egon_price) + " €")
+st.line_chart(chart_data, height=800)
+st.dataframe(chart_data)

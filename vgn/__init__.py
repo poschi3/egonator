@@ -33,3 +33,12 @@ TARIFSTUFEN = {
     "10":   Tarifstufe(12.09, 13.00, 21.50),
     "10+T": Tarifstufe(12.09, 13.00, 21.50)
 }
+
+def single_online(days: float, tarifstufe) -> float:
+    return TARIFSTUFEN[tarifstufe].single_online * 2 * days
+
+def single_offline(days: float, tarifstufe) -> float:
+    return TARIFSTUFEN[tarifstufe].single_offline * 2 * days
+
+def day(days: float, tarifstufe) -> float:
+    return TARIFSTUFEN[tarifstufe].day * days
