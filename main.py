@@ -15,52 +15,34 @@ st.set_page_config(
     # }
 )
 
-def param(key, default):
-    params = st.experimental_get_query_params()
-    param = params.get(key)
-    if param:
-        return param[0]
-    else:
-        return default
-
-
-
 with st.sidebar:
     st.header("Eingaben")
     days = st.slider(
         "Betrachtungszeitraum",
         min_value=2,
         max_value=31,
-        value=int(param("days", 10))
+        value=10
     )
 
     st.subheader("Herkömmlich")
     tarifstufe = st.selectbox(
         "Tarifstufe",
-        options=vgn.TARIFSTUFEN.keys(),
-        index=list(vgn.TARIFSTUFEN.keys()).index(param("tarifstufe", "A"))
+        options=vgn.TARIFSTUFEN.keys()
     )
 
     nbg = st.checkbox(
         "Nürnberg gestreift?",
-        value=bool(param("nbg", True))
+        value=True
     )
 
     st.subheader("Egon")
     distance = st.number_input(
         "Einfache Distanz in km",
-        value=float(param("distance", 10.0)),
+        value=10.0,
         step=0.1,
         min_value=0.1,
         max_value=200.0,
         format="%.1f"
-    )
-
-    st.experimental_set_query_params(
-        days=days,
-        tarifstufe=tarifstufe,
-        nbg=nbg,
-        distance=distance
     )
 
 st.header("Kosten")
