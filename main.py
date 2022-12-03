@@ -16,28 +16,16 @@ st.set_page_config(
 )
 
 with st.sidebar:
-    st.header("Eingaben")
-    days = st.slider(
-        "Betrachtungszeitraum",
-        min_value=2,
-        max_value=31,
-        value=10
-    )
+    st.header("Parameter")
+    days = st.slider("Betrachtungszeitraum", value=10, min_value=2, max_value=31)
 
     st.subheader("Herkömmlich")
-    tarifstufe = st.selectbox(
-        "Tarifstufe",
-        options=vgn.TARIFSTUFEN.keys()
-    )
+    tarifstufe = st.selectbox("Tarifstufe", options=vgn.TARIFSTUFEN.keys())
 
-    nbg = st.checkbox(
-        "Nürnberg gestreift?",
-        value=True
-    )
+    nbg = st.checkbox("Nürnberg gestreift?", value=True)
 
     st.subheader("Egon")
-    distance = st.number_input(
-        "Einfache Distanz in km",
+    distance = st.number_input("Einfache Distanz in km",
         value=10.0,
         step=0.1,
         min_value=0.1,
