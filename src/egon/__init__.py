@@ -7,7 +7,7 @@ VOLUME_2 = 72.0
 DISCOUNT_2 = 0.5 # 0.75 but is 0.5 to the existing 0.5
 
 VOLUME_3 = 220.0
-DISCOUNT_3 = 1
+# DISCOUNT_3 = 1 # Not used
 
 
 def basic_price(distance: float) -> float:
@@ -22,7 +22,7 @@ def discount(price: float) -> float:
     if new_price <= VOLUME_2:
         return new_price
 
-    new_price =  VOLUME_1 + VOLUME_2 + (new_price - VOLUME_1 - VOLUME_2) * DISCOUNT_2 # TODO
+    new_price = VOLUME_2 + (new_price - VOLUME_2) * DISCOUNT_2
     if new_price <= VOLUME_3:
         return new_price
 

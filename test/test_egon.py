@@ -29,11 +29,15 @@ class TestEgon(unittest.TestCase):
         self.assertEqual(egon.discount(132), 72.0)
 
         # Discount 2
-        self.assertEqual(egon.discount(200), 95.0)
+        self.assertEqual(egon.discount(133), 72.25)
+        self.assertEqual(egon.discount(200), 89.0)
+        self.assertEqual(egon.discount(723), 219.75)
+        self.assertEqual(egon.discount(724), 220.0)
 
         # Discount 3
+        self.assertEqual(egon.discount(725), 220.0)
         self.assertEqual(egon.discount(1000), 220.0)
-    
+
     def test_price_for_days(self):
         egon.price_for_days(1, 10, True)
         self.assertEqual(egon.price_for_days(1, 10, False), 5.80)
