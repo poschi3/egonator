@@ -60,7 +60,7 @@ Addiere die Kilometer falls sie auf mehrere Rabattstufen aufteilt werden.
 
 
 
-st.title("Egonator")
+st.title("🚇 Egonator")
 st.warning(
 """Status: Experimentell. Der neue Tarif ist so kompliziert, dass ich nicht garantieren kann,
 dass alle Rabatte komplett richtig berechnet werden.
