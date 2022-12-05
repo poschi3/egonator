@@ -46,7 +46,7 @@ ermittelt werden.
     st.markdown(
 """
 Gesamtkilometer für eine einfache Fahrt entsprechend der [Egon-Auskunft](https://www.vgn.de/egon/preisinfo).
-Addiere die Kilometer falls sie auf mehrere Rabattstufen aufteilt werden.
+Addiere die Kilometer falls sie auf mehrere Rabattstufen aufgeteilt werden.
 """
     )
     distance = st.number_input("Einfache Entfernung in km",
