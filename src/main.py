@@ -13,7 +13,7 @@ st.set_page_config(
         "Report a bug": "https://github.com/poschi3/egonator/issues",
         "About": 
 """
-# Kleiner Vergleichsrechner
+# Egonator der Vergleichsrechner
 
 * [Fork me on GitHub](https://github.com/poschi3/egonator)
 * [VGN Preisliste](https://www.vgn.de/media/preistabelle-2022.pdf)
@@ -58,6 +58,9 @@ Addiere die Kilometer falls sie auf mehrere Rabattstufen aufgeteilt werden.
     )
     nbg = st.checkbox("Zone 100 oder 200 (Nürnberg) berührt?", value=True)
 
+    st.subheader("Weitere Zeitkarten einblenden")
+    abo = st.checkbox("Abos")
+    mobi = st.checkbox("Mobi-Karten")
 
 
 st.title("🚇 Egonator")
@@ -72,16 +75,30 @@ data = []
 for day in range(1, days + 1):
     data.append([
         day,
+        egon.price_for_days(day, distance, nbg),
         vgn.single_online(day, tarifstufe),
         vgn.day(day, tarifstufe),
         vgn.TARIFSTUFEN[tarifstufe].solo_31,
-        egon.price_for_days(day, distance, nbg)
+        vgn.TARIFSTUFEN[tarifstufe].abo_3,
+        vgn.TARIFSTUFEN[tarifstufe].abo_6,
+        vgn.TARIFSTUFEN[tarifstufe].abo_12,
+        vgn.TARIFSTUFEN[tarifstufe].abo_12_9,
+        vgn.TARIFSTUFEN[tarifstufe].mobi_9,
+        vgn.TARIFSTUFEN[tarifstufe].mobi_31
     ])
 
 chart_data = pd.DataFrame(
     data,
-    columns=["Tag", "Einzelfahrkarte", "Tagesticket", "Solo 31", "Egon"]
+    columns=["Tag", "Egon", "Einzelfahrkarte", "Tagesticket", "Solo 31",
+        "Abo 3", "Abo 6", "Jahres Abo", "9 Uhr Jahres Abo",
+        "9-Uhr-MobiCard", "31-Tage-MobiCard"]
 )
 
-st.line_chart(chart_data, height=800,x="Tag",y=["Einzelfahrkarte", "Tagesticket", "Solo 31", "Egon"])
+columns=["Tag", "Egon", "Einzelfahrkarte", "Tagesticket", "Solo 31"]
+if abo:
+    columns.extend(["Abo 3", "Abo 6", "Jahres Abo", "9 Uhr Jahres Abo"])
+if mobi:
+    columns.extend(["9-Uhr-MobiCard", "31-Tage-MobiCard"])
+
+st.line_chart(chart_data, height=800,x="Tag",y=columns)
 #st.dataframe(chart_data)
