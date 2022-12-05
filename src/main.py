@@ -64,11 +64,10 @@ Addiere die Kilometer falls sie auf mehrere Rabattstufen aufgeteilt werden.
 
 
 st.title("🚇 Egonator")
-st.warning(
-"""Status: Experimentell. Der neue Tarif ist so kompliziert, dass ich nicht garantieren kann,
-dass alle Rabatte komplett richtig berechnet werden.
-""",
-    icon="⚠️")
+st.info(
+"""Dieser Rechner ist noch experimentell. Feedback ist willkommen. Der [Quellcode](https://github.com/poschi3/egonator/) ist öffentlich 🙂
+""", icon="ℹ️")
+
 st.header("Kosten")
 
 data = []
