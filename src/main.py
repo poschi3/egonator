@@ -60,7 +60,8 @@ Addiere die Kilometer falls sie auf mehrere Rabattstufen aufgeteilt werden.
 
     st.subheader("Weitere Zeitkarten einblenden")
     abo = st.checkbox("Abos")
-    mobi = st.checkbox("Mobi-Karten")
+    mobi = st.checkbox("Mobi-Karte")
+    from_nine = st.checkbox("9 Uhr Abo / Mobi-Karten")
 
 
 st.title("🚇 Egonator")
@@ -90,14 +91,16 @@ chart_data = pd.DataFrame(
     data,
     columns=["Tag", "Egon", "Einzelfahrkarte", "Tagesticket", "Solo 31",
         "Abo 3", "Abo 6", "Jahres Abo", "9 Uhr Jahres Abo",
-        "9-Uhr-MobiCard", "31-Tage-MobiCard"]
+        "9 Uhr MobiCard", "31 Tage MobiCard"]
 )
 
 columns=["Tag", "Egon", "Einzelfahrkarte", "Tagesticket", "Solo 31"]
 if abo:
-    columns.extend(["Abo 3", "Abo 6", "Jahres Abo", "9 Uhr Jahres Abo"])
+    columns.extend(["Abo 3", "Abo 6", "Jahres Abo"])
 if mobi:
-    columns.extend(["9-Uhr-MobiCard", "31-Tage-MobiCard"])
+    columns.extend(["31 Tage MobiCard"])
+if from_nine:
+    columns.extend(["9 Uhr Jahres Abo", "9 Uhr MobiCard"])
 
 st.line_chart(chart_data, height=800,x="Tag",y=columns)
 #st.dataframe(chart_data)

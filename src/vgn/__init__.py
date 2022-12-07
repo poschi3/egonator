@@ -1,26 +1,18 @@
+from dataclasses import dataclass
+
+@dataclass
 class Tarifstufe:
-    def __init__(self,
-            single_online: float,
-            single_offline: float,
-            day: float,
-            solo_31: float,
-            abo_3: float,
-            abo_6: float,
-            abo_12: float,
-            abo_12_9: float,
-            mobi_9: float,
-            mobi_31: float
-            ) -> None:
-        self.single_online = single_online
-        self.single_offline = single_offline
-        self.day = day
-        self.solo_31 = solo_31
-        self.abo_3 = abo_3
-        self.abo_6 = abo_6
-        self.abo_12 = abo_12
-        self.abo_12_9 = abo_12_9
-        self.mobi_9 = mobi_9
-        self.mobi_31 = mobi_31
+    single_online: float
+    single_offline: float
+    day: float
+    solo_31: float
+    abo_3: float
+    abo_6: float
+    abo_12: float
+    abo_12_9: float
+    mobi_9: float
+    mobi_31: float
+
 
 TARIFSTUFEN = {
     "A":    Tarifstufe( 2.75,  3.20,  8.30,  80.10,  73.90,  68.90,  61.60, 37.90,  73.40,  90.90),
