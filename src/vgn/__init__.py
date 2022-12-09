@@ -44,11 +44,11 @@ TARIFSTUFEN = {
     "10+T": Tarifstufe(12.09, 13.00, 21.50, 303.40, 287.50, 271.50, 238.70, 99.90, 111.50, 337.30)
 }
 
-def single_online(days: float, tarifstufe) -> float:
-    return TARIFSTUFEN[tarifstufe].single_online * 2 * days
+def single_online(days: float, tarifstufe, rides_per_day) -> float:
+    return TARIFSTUFEN[tarifstufe].single_online * rides_per_day * days
 
-def single_offline(days: float, tarifstufe) -> float:
-    return TARIFSTUFEN[tarifstufe].single_offline * 2 * days
+def single_offline(days: float, tarifstufe, rides_per_day) -> float:
+    return TARIFSTUFEN[tarifstufe].single_offline * rides_per_day * days
 
 def day(days: float, tarifstufe) -> float:
     return TARIFSTUFEN[tarifstufe].day * days

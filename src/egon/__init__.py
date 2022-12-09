@@ -28,7 +28,7 @@ def discount(price: float) -> float:
 
     return VOLUME_3
 
-def price_for_days(days: float, distance: float, nbg: bool) -> float:
-    price = basic_price(distance * 2 * days)
+def price_for_days(days: float, distance: float,  rides_per_day: int, nbg: bool) -> float:
+    price = basic_price(distance * rides_per_day * days)
     price += (2.0 if nbg else 1.0) * days
     return discount(price)

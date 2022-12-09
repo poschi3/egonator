@@ -28,10 +28,12 @@ with st.sidebar:
 """
 Hier wird der [VGN-Tarif](https://www.vgn.de/media/preistabelle-2022.pdf) mit dem 
 [Egon-Tarif](https://www.vgn.de/egon/kosten) verglichen. Wir betrachten ein 
-PendlerInnen-Szenario: Jeder Tag entspricht zwei Fahrten.
+PendlerInnen-Szenario:
 """
     )
     days = st.slider("Anzahl Pendeltage", value=10, min_value=2, max_value=31)
+
+    rides_per_day = st.slider("Anzahl Fahrten pro Pendeltag", value=2, min_value=1, max_value=5)
 
     st.subheader("VGN-Tarif")
     st.markdown(
@@ -75,8 +77,8 @@ data = []
 for day in range(1, days + 1):
     data.append([
         day,
-        egon.price_for_days(day, distance, nbg),
-        vgn.single_online(day, tarifstufe),
+        egon.price_for_days(day, distance, rides_per_day, nbg),
+        vgn.single_online(day, tarifstufe, rides_per_day),
         vgn.day(day, tarifstufe),
         vgn.TARIFSTUFEN[tarifstufe].solo_31,
         vgn.TARIFSTUFEN[tarifstufe].abo_3,
