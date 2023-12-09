@@ -3,10 +3,10 @@ PRICE_PER_DISTANCE = 0.24
 VOLUME_1 = 12.0
 DISCOUNT_1 = 0.5
 
-VOLUME_2 = 72.0
+VOLUME_2 = 50.0
 DISCOUNT_2 = 0.5 # 0.75 but is 0.5 to the existing 0.5
 
-VOLUME_3 = 220.0
+VOLUME_3 = 70.0
 # DISCOUNT_3 = 1 # Not used
 
 
