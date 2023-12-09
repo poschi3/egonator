@@ -60,10 +60,10 @@ Addiere die Kilometer falls sie auf mehrere Rabattstufen aufgeteilt werden.
     )
     nbg = st.checkbox("Zone 100 oder 200 (Nürnberg) berührt?", value=True)
 
-    st.subheader("Weitere Zeitkarten einblenden")
-    abo = st.checkbox("Abos")
-    mobi = st.checkbox("Mobi-Karte")
-    from_nine = st.checkbox("9 Uhr Abo / Mobi-Karten")
+    # st.subheader("Weitere Zeitkarten einblenden")
+    # abo = st.checkbox("Abos")
+    # mobi = st.checkbox("Mobi-Karte")
+    # from_nine = st.checkbox("9 Uhr Abo / Mobi-Karten")
 
 
 st.title("🚇 Egonator")
@@ -80,29 +80,41 @@ for day in range(1, days + 1):
         egon.price_for_days(day, distance, rides_per_day, nbg),
         vgn.single_online(day, tarifstufe, rides_per_day),
         vgn.day(day, tarifstufe),
-        vgn.TARIFSTUFEN[tarifstufe].solo_31,
-        vgn.TARIFSTUFEN[tarifstufe].abo_3,
-        vgn.TARIFSTUFEN[tarifstufe].abo_6,
-        vgn.TARIFSTUFEN[tarifstufe].abo_12,
-        vgn.TARIFSTUFEN[tarifstufe].abo_12_9,
-        vgn.TARIFSTUFEN[tarifstufe].mobi_9,
-        vgn.TARIFSTUFEN[tarifstufe].mobi_31
+        # vgn.TARIFSTUFEN[tarifstufe].solo_31,
+        # vgn.TARIFSTUFEN[tarifstufe].abo_3,
+        # vgn.TARIFSTUFEN[tarifstufe].abo_6,
+        # vgn.TARIFSTUFEN[tarifstufe].abo_12,
+        # vgn.TARIFSTUFEN[tarifstufe].abo_12_9,
+        # vgn.TARIFSTUFEN[tarifstufe].mobi_9,
+        # vgn.TARIFSTUFEN[tarifstufe].mobi_31
+        49.00
     ])
 
 chart_data = pd.DataFrame(
     data,
-    columns=["Tag", "Egon", "Einzelfahrkarte", "Tagesticket", "Solo 31",
-        "Abo 3", "Abo 6", "Jahres Abo", "9 Uhr Jahres Abo",
-        "9 Uhr MobiCard", "31 Tage MobiCard"]
+    columns=[
+        "Tag",
+        "Egon",
+        "Einzelfahrkarte",
+        "Tagesticket",
+        # "Solo 31",
+        # "Abo 3",
+        # "Abo 6",
+        # "Jahres Abo",
+        # "9 Uhr Jahres Abo",
+        # "9 Uhr MobiCard",
+        # "31 Tage MobiCard"
+        "Deutschlandticket"
+        ]
 )
 
-columns=["Tag", "Egon", "Einzelfahrkarte", "Tagesticket", "Solo 31"]
-if abo:
-    columns.extend(["Abo 3", "Abo 6", "Jahres Abo"])
-if mobi:
-    columns.extend(["31 Tage MobiCard"])
-if from_nine:
-    columns.extend(["9 Uhr Jahres Abo", "9 Uhr MobiCard"])
+columns=["Tag", "Egon", "Einzelfahrkarte", "Tagesticket", "Deutschlandticket"] #  "Solo 31"
+# if abo:
+#     columns.extend(["Abo 3", "Abo 6", "Jahres Abo"])
+# if mobi:
+#     columns.extend(["31 Tage MobiCard"])
+# if from_nine:
+#     columns.extend(["9 Uhr Jahres Abo", "9 Uhr MobiCard"])
 
 st.line_chart(chart_data, height=800,x="Tag",y=columns)
 #st.dataframe(chart_data)
