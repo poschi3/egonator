@@ -88,7 +88,7 @@ for day in range(1, days + 1):
         # vgn.TARIFSTUFEN[tarifstufe].abo_12_9,
         # vgn.TARIFSTUFEN[tarifstufe].mobi_9,
         # vgn.TARIFSTUFEN[tarifstufe].mobi_31
-        49.00
+        58.00 # Deutschlandticket
     ])
 
 chart_data = pd.DataFrame(
