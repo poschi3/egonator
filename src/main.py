@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import vgn
 import egon
+import plotly.express as px
 
 st.set_page_config(
     page_title="Egonator",
@@ -31,7 +32,7 @@ Hier wird der [VGN-Tarif](https://www.vgn.de/media/preistabelle-2022.pdf) mit de
 PendlerInnen-Szenario:
 """
     )
-    days = st.slider("Anzahl Pendeltage", value=10, min_value=2, max_value=31)
+    days = 31
 
     rides_per_day = st.slider("Anzahl Fahrten pro Pendeltag", value=2, min_value=1, max_value=5)
 
@@ -93,7 +94,7 @@ for day in range(1, days + 1):
 chart_data = pd.DataFrame(
     data,
     columns=[
-        "Tag",
+        "Pendeltage",
         "Egon",
         "Einzelfahrkarte",
         "Tagesticket",
@@ -108,7 +109,7 @@ chart_data = pd.DataFrame(
         ]
 )
 
-columns=["Tag", "Egon", "Einzelfahrkarte", "Tagesticket", "Deutschlandticket"] #  "Solo 31"
+columns=["Pendeltage", "Egon", "Einzelfahrkarte", "Tagesticket", "Deutschlandticket"] #  "Solo 31"
 # if abo:
 #     columns.extend(["Abo 3", "Abo 6", "Jahres Abo"])
 # if mobi:
@@ -116,5 +117,12 @@ columns=["Tag", "Egon", "Einzelfahrkarte", "Tagesticket", "Deutschlandticket"] #
 # if from_nine:
 #     columns.extend(["9 Uhr Jahres Abo", "9 Uhr MobiCard"])
 
-st.line_chart(chart_data, height=800,x="Tag",y=columns)
-#st.dataframe(chart_data)
+# Create the Plotly figure
+fig = px.line(chart_data, height=800, x="Pendeltage", y=columns,
+              title="Kosten",
+              labels={"value": "Kosten (€)", "variable": "Fahrkarte"},
+              markers=True)
+
+fig.update_traces(hovertemplate='%{fullData.name}<br>%{x} Pendeltage %{y:.2f} €<extra></extra>')
+
+st.plotly_chart(fig, use_container_width=True)
