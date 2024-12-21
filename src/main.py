@@ -17,7 +17,7 @@ st.set_page_config(
 # Egonator der Vergleichsrechner
 
 * [Fork me on GitHub](https://github.com/poschi3/egonator)
-* [VGN Preisliste](https://www.vgn.de/media/preistabelle-2022.pdf)
+* [VGN Preisliste](https://www.vgn.de/tickets/)
 * [Egon Preisliste](https://www.vgn.de/egon/kosten)
 """
     }
@@ -27,8 +27,8 @@ with st.sidebar:
     st.header("Anleitung")
     st.markdown(
 """
-Hier wird der [VGN-Tarif](https://www.vgn.de/media/preistabelle-2022.pdf) mit dem 
-[Egon-Tarif](https://www.vgn.de/egon/kosten) verglichen. Wir betrachten ein 
+Hier wird der [VGN-Tarif](https://www.vgn.de/tickets/) mit dem
+[Egon-Tarif](https://www.vgn.de/egon/kosten) verglichen (Stand 1.1.2025). Wir betrachten ein
 PendlerInnen-Szenario:
 """
     )
@@ -69,7 +69,7 @@ Addiere die Kilometer falls sie auf mehrere Rabattstufen aufgeteilt werden.
 
 st.title("🚇 Egonator")
 st.info(
-"""Dieser Rechner ist noch experimentell. Feedback ist willkommen. Der [Quellcode](https://github.com/poschi3/egonator/) ist öffentlich 🙂
+"""Dieser Rechner ist experimentell. Feedback ist [willkommen](https://chaos.social/@poschi). Der [Quellcode](https://github.com/poschi3/egonator/) ist öffentlich 🙂
 """, icon="ℹ️")
 
 st.header("Kosten")
