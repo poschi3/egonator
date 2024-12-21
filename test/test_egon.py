@@ -50,19 +50,19 @@ class TestEgon(unittest.TestCase):
 
 class TestVgn(unittest.TestCase):
     def test_single_online(self):
-        self.assertEqual(vgn.single_online(1, "A", 2), 6.50)
-        self.assertEqual(vgn.single_online(1, "A", 1), 3.25)
-        self.assertEqual(vgn.single_online(10, "A", 2), 65.00)
-        self.assertEqual(vgn.single_online(10, "A", 5), 162.50)
+        self.assertEqual(vgn.single_online(1, "A", 2), 6.94)
+        self.assertEqual(vgn.single_online(1, "A", 1), 3.47)
+        self.assertEqual(vgn.single_online(10, "A", 2), 69.40)
+        self.assertEqual(vgn.single_online(10, "A", 5), 173.50)
 
 
     def test_single_offline(self):
-        self.assertEqual(vgn.single_offline(1, "A", 2), 7.40)
-        self.assertEqual(vgn.single_offline(10, "A", 2), 74.00)
+        self.assertEqual(vgn.single_offline(1, "A", 2), 7.80)
+        self.assertEqual(vgn.single_offline(10, "A", 2), 78.00)
 
     def test_day(self):
-        self.assertEqual(vgn.day(1, "A"), 9.70)
-        self.assertEqual(vgn.day(10, "A"), 97.00)
+        self.assertEqual(vgn.day(1, "A"), 10.30)
+        self.assertEqual(vgn.day(10, "A"), 103.00)
 
 if __name__ == '__main__':
     unittest.main()
