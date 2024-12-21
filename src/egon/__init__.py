@@ -1,4 +1,6 @@
-PRICE_PER_DISTANCE = 0.24
+PRICE_PER_DAY = 1.40
+PRICE_PER_DAY_NBG = 2.80
+PRICE_PER_DISTANCE = 0.30
 
 VOLUME_1 = 12.0
 DISCOUNT_1 = 0.5
@@ -30,5 +32,5 @@ def discount(price: float) -> float:
 
 def price_for_days(days: float, distance: float,  rides_per_day: int, nbg: bool) -> float:
     price = basic_price(distance * rides_per_day * days)
-    price += (2.0 if nbg else 1.0) * days
+    price += (PRICE_PER_DAY_NBG if nbg else PRICE_PER_DAY) * days
     return discount(price)
