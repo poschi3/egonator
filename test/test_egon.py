@@ -6,17 +6,17 @@ import vgn
 class TestEgon(unittest.TestCase):
     def test_basic_price(self):
         # Nürnberg Hbf ->  Nürnberg Schoppershof
-        self.assertEqual(egon.basic_price(2.4), 0.58)
+        self.assertEqual(egon.basic_price(2.4), 0.72)
 
         # Nürnberg Hbf -> Fürth Hbf
-        self.assertEqual(egon.basic_price(7.1), 1.70)
+        self.assertEqual(egon.basic_price(7.1), 2.13)
 
         # Nürnberg Hbf -> Erlangen Hbf
-        self.assertEqual(egon.basic_price(17.6), 4.22)
+        self.assertEqual(egon.basic_price(17.6), 5.28)
 
         # Nürnberg Hbf -> Bayreuth Hbf
         # This is not what VGN webiste says because we calculate discount in secound step
-        self.assertEqual(egon.basic_price(41.6 + 24.8), 15.94)
+        self.assertEqual(egon.basic_price(41.6 + 24.8), 19.92)
 
     def test_discount(self):
         # No discount
@@ -39,14 +39,14 @@ class TestEgon(unittest.TestCase):
 
     def test_price_for_days(self):
         egon.price_for_days(1, 10, 2, True)
-        self.assertEqual(egon.price_for_days(1, 10, 2, False), 5.80)
-        self.assertEqual(egon.price_for_days(10, 10, 1, False), 23.00)
-        self.assertEqual(egon.price_for_days(10, 10, 2, False), 35.00)
-        self.assertEqual(egon.price_for_days(10, 10, 5, False), 60.50)
+        self.assertEqual(egon.price_for_days(1, 10, 2, False), 7.40)
+        self.assertEqual(egon.price_for_days(10, 10, 1, False), 28.00)
+        self.assertEqual(egon.price_for_days(10, 10, 2, False), 43.00)
+        self.assertEqual(egon.price_for_days(10, 10, 5, False), 69.00)
 
 
-        self.assertEqual(egon.price_for_days(1, 10, 2, True), 6.80)
-        self.assertEqual(egon.price_for_days(10, 10, 2, True), 40.00)
+        self.assertEqual(egon.price_for_days(1, 10, 2, True), 8.80)
+        self.assertEqual(egon.price_for_days(10, 10, 2, True), 50.00)
 
 class TestVgn(unittest.TestCase):
     def test_single_online(self):
