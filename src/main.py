@@ -28,7 +28,7 @@ with st.sidebar:
     st.markdown(
 """
 Hier wird der [VGN-Tarif](https://www.vgn.de/tickets/) mit dem
-[Egon-Tarif](https://www.vgn.de/egon/kosten) verglichen (Stand 1.1.2025). Wir betrachten ein
+[Egon-Tarif](https://www.vgn.de/egon/kosten) verglichen (Stand 03.11.2025). Wir betrachten ein
 PendlerInnen-Szenario:
 """
     )
