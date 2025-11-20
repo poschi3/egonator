@@ -24,13 +24,13 @@ class TestEgon(unittest.TestCase):
         self.assertEqual(egon.discount(12), 12.00)
 
         # Discount 1
-        self.assertEqual(egon.discount(15), 13.50)
-        self.assertEqual(egon.discount(72), 42.00)
-        self.assertEqual(egon.discount(88), 50.00)
+        self.assertEqual(egon.discount(15), 15.00)
+        self.assertEqual(egon.discount(72), 45.00)
+        self.assertEqual(egon.discount(88), 51.50)
 
         # Discount 2
-        self.assertEqual(egon.discount(89), 50.25)
-        self.assertEqual(egon.discount(133), 61.25)
+        self.assertEqual(egon.discount(89), 51.75)
+        self.assertEqual(egon.discount(133), 62.75)
         self.assertEqual(egon.discount(168), 70.00)
 
         # Discount 3
@@ -39,21 +39,21 @@ class TestEgon(unittest.TestCase):
 
     def test_price_for_days(self):
         egon.price_for_days(1, 10, 2, True)
-        self.assertEqual(egon.price_for_days(1, 10, 2, False), 7.40)
-        self.assertEqual(egon.price_for_days(10, 10, 1, False), 28.00)
-        self.assertEqual(egon.price_for_days(10, 10, 2, False), 43.00)
-        self.assertEqual(egon.price_for_days(10, 10, 5, False), 69.00)
+        self.assertEqual(egon.price_for_days(1, 10, 2, False), 7.50)
+        self.assertEqual(egon.price_for_days(10, 10, 1, False), 31.50)
+        self.assertEqual(egon.price_for_days(10, 10, 2, False), 46.50)
+        self.assertEqual(egon.price_for_days(10, 10, 5, False), 70.00)
 
 
-        self.assertEqual(egon.price_for_days(1, 10, 2, True), 8.80)
-        self.assertEqual(egon.price_for_days(10, 10, 2, True), 50.00)
+        self.assertEqual(egon.price_for_days(1, 10, 2, True), 9.00)
+        self.assertEqual(egon.price_for_days(10, 10, 2, True), 52.00)
 
 class TestVgn(unittest.TestCase):
     def test_single_online(self):
-        self.assertEqual(vgn.single_online(1, "A", 2), 6.94)
-        self.assertEqual(vgn.single_online(1, "A", 1), 3.47)
-        self.assertEqual(vgn.single_online(10, "A", 2), 69.40)
-        self.assertEqual(vgn.single_online(10, "A", 5), 173.50)
+        self.assertEqual(vgn.single_online(1, "A", 2), 7.30)
+        self.assertEqual(vgn.single_online(1, "A", 1), 3.65)
+        self.assertEqual(vgn.single_online(10, "A", 2), 73.00)
+        self.assertEqual(vgn.single_online(10, "A", 5), 182.50)
 
 
     def test_single_offline(self):
@@ -61,8 +61,8 @@ class TestVgn(unittest.TestCase):
         self.assertEqual(vgn.single_offline(10, "A", 2), 78.00)
 
     def test_day(self):
-        self.assertEqual(vgn.day(1, "A"), 10.30)
-        self.assertEqual(vgn.day(10, "A"), 103.00)
+        self.assertEqual(vgn.day(1, "A"), 10.60)
+        self.assertEqual(vgn.day(10, "A"), 106.00)
 
 if __name__ == '__main__':
     unittest.main()
